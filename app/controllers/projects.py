@@ -5,6 +5,8 @@ from app.models.project import Project
 from app.models.user import User
 from app.forms.project_forms import ProjectForm
 from app.utils.helpers import get_user_projects
+from app.services.email_service import EmailService
+from app.services.notification_service import NotificationService
 
 projects_bp = Blueprint('projects', __name__, url_prefix='/projects')
 
