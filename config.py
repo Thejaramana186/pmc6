@@ -5,7 +5,7 @@ load_dotenv()
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard-to-guess-string'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///pi_management.db'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'mysql+pymysql://admin:bLy?rXQDy~c43da1U$Fzh<y.BUYP.@pmc6-devbd.c63wim4ayano.us-east-1.rds.amazonaws.com:3306/pmc6db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
     # Mail settings
