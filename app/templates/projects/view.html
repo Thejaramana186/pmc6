@@ -76,7 +76,7 @@
                     <i class="fas fa-users text-warning fa-lg"></i>
                 </div>
                 <h6 class="text-muted mb-1">Team Members</h6>
-                <p class="mb-0 fw-bold">{{ project.team_members|length + 1 }}</p>
+                <p class="mb-0 fw-bold">{{ project.team_members|length }}</p>
                 <small class="text-muted">Active members</small>
             </div>
         </div>
@@ -96,35 +96,13 @@
             </div>
         </div>
         
-        <!-- Quick Actions -->
-        <div class="card border-0 shadow-sm mb-4">
-            <div class="card-header bg-white border-0 py-3">
-                <h5 class="mb-0 fw-bold">Quick Actions</h5>
-            </div>
-            <div class="card-body">
-                <div class="d-flex flex-wrap gap-2">
-                    {% if current_user.is_pi() or current_user in project.team_members %}
-                        <a href="{{ url_for('tasks.create_task', project_id=project.id) }}" class="btn btn-primary">
-                            <i class="fas fa-plus me-1"></i>Create Task
-                        </a>
-                    {% endif %}
-                    {% if current_user.is_pi() and project.pi_id == current_user.id %}
-                        <a href="{{ url_for('meetings.create_meeting', project_id=project.id) }}" class="btn btn-success">
-                            <i class="fas fa-calendar-plus me-1"></i>Schedule Meeting
-                        </a>
-                        <a href="{{ url_for('projects.edit_project', id=project.id) }}" class="btn btn-outline-secondary">
-                            <i class="fas fa-users me-1"></i>Manage Team
-                        </a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
+       
         
         <!-- Tasks -->
         <div class="card border-0 shadow-sm mb-4">
             <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
                 <h5 class="mb-0 fw-bold">Tasks</h5>
-                {% if current_user.is_pi() or current_user in project.team_members %}
+                {% if current_user.is_pi()  %}
                     <a href="{{ url_for('tasks.create_task', project_id=project.id) }}" class="btn btn-outline-primary btn-sm">
                         <i class="fas fa-plus me-1"></i>Add Task
                     </a>
@@ -165,8 +143,8 @@
                     <div class="text-center py-5">
                         <i class="fas fa-tasks fa-3x text-muted mb-3"></i>
                         <h6 class="text-muted">No tasks created yet</h6>
-                        <p class="text-muted small">Create your first task to get started</p>
-                        {% if current_user.is_pi() or current_user in project.team_members %}
+                       
+                        {% if current_user.is_pi()  %}
                             <a href="{{ url_for('tasks.create_task', project_id=project.id) }}" class="btn btn-primary btn-sm">
                                 <i class="fas fa-plus me-1"></i>Create first task
                             </a>
@@ -218,7 +196,7 @@
                     <div class="text-center py-5">
                         <i class="fas fa-calendar fa-3x text-muted mb-3"></i>
                         <h6 class="text-muted">No meetings scheduled yet</h6>
-                        <p class="text-muted small">Schedule your first meeting to get started</p>
+                        
                         {% if current_user.is_pi() and project.pi_id == current_user.id %}
                             <a href="{{ url_for('meetings.create_meeting', project_id=project.id) }}" class="btn btn-success btn-sm">
                                 <i class="fas fa-plus me-1"></i>Schedule first meeting
